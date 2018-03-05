@@ -11,37 +11,49 @@ class Search extends Component{
   }
 
   state = {
-    booksSearch:[]
+    booksSearch:[],
+    foundBook:true
   }
 
   updateQuery = (query) =>{
+
     if(query){
       BooksAPI.search(query, 1000).then((books)=> {
-        this.setState({
-          booksSearch:books
-        })
+        if(books.error == undefined){
+          books.map((book) => {
+            const bookInShelf = books.find(b => b.id === book.id)
+             if (bookInShelf) {
+               book.shelf = bookInShelf.shelf
+             }else{
+               book.shelf = 'none'
+             }
+             return book
+          })
+          this.setState({
+            booksSearch:books,
+            foundBook:true
+          })
+        }else{
+          this.setState({
+            booksSearch:[],
+            foundBook:false
+          })
+        }
       })
+
     }else{
       this.setState({
-        booksSearch:[]
+        booksSearch:[],
+        foundBook:false
       })
     }
   }
 
 
   render(){
-    const {booksSearch} = this.state
+    const {booksSearch, foundBook} = this.state
     const {books, onUpdateShelf} = this.props
 
-    booksSearch.map((book) => {
-      const bookInShelf = books.find(b => b.id === book.id)
-       if (bookInShelf) {
-         book.shelf = bookInShelf.shelf
-       }else{
-         book.shelf = 'none'
-       }
-       return book
-    })
 
     return(
       <div className="search-books">
@@ -62,17 +74,23 @@ class Search extends Component{
 
           </div>
         </div>
-        <div className="search-books-results">
-          <Book
-            onUpdateShelf={onUpdateShelf}
-            books={this.state.booksSearch}>
-            </Book>
-        </div>
+
+        {foundBook ? (
+          <div className="search-books-results">
+            <Book
+              onUpdateShelf={onUpdateShelf}
+              books={this.state.booksSearch}>
+              </Book>
+          </div>
+
+        ):(
+          <div className="search-books-results">
+            <p>Not found</p>
+          </div>
+        )}
       </div>
     )
   }
-
-
 }
 
 export default Search

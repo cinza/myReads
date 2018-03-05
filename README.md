@@ -88,6 +88,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This repository is the first project of React's Nanodegree, by [Andrea Zuniga R](https://github.com/cinza). Hope you like it!
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
