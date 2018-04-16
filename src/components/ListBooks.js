@@ -17,45 +17,45 @@ const ListBooks = ({books, onUpdateShelf}) =>{
         <div>
           <div className="bookshelf">
             <h2 className="bookshelf-title">Currently Reading</h2>
-            <div className="bookshelf-books">
-              <Book
-                onUpdateShelf={onUpdateShelf}
-                books={currentlyReading}>
+              <div className="bookshelf-books">
+                <Book
+                  onUpdateShelf={onUpdateShelf}
+                  books={currentlyReading}>
 
-              </Book>
+                </Book>
+              </div>
             </div>
-          </div>
-          <div className="bookshelf">
-            <h2 className="bookshelf-title">Want to read</h2>
-            <div className="bookshelf-books">
-              <Book
-                onUpdateShelf={onUpdateShelf}
-                books={wantToRead}>
+            <div className="bookshelf">
+              <h2 className="bookshelf-title">Want to read</h2>
+              <div className="bookshelf-books">
+                <Book
+                  onUpdateShelf={onUpdateShelf}
+                  books={wantToRead}>
 
-              </Book>
+                </Book>
+              </div>
             </div>
-          </div>
-          <div className="bookshelf">
-            <h2 className="bookshelf-title">Read</h2>
-            <div className="bookshelf-books">
-              <Book
-                onUpdateShelf={onUpdateShelf}
-                books={read}>
+            <div className="bookshelf">
+              <h2 className="bookshelf-title">Read</h2>
+              <div className="bookshelf-books">
+                <Book
+                  onUpdateShelf={onUpdateShelf}
+                  books={read}>
 
-              </Book>
+                </Book>
+              </div>
             </div>
-          </div>
 
+          </div>
+        </div>
+        <div className="open-search">
+          <Link to="/search">Add a book</Link>
         </div>
       </div>
-      <div className="open-search">
-        <Link to="/search">Add a book</Link>
-      </div>
-    </div>
-  )
-}
-ListBooks.propTypes = {
-  books: React.PropTypes.array.isRequired,
-  onUpdateShelf: React.PropTypes.func.isRequired
-}
-export default ListBooks
+    )
+  }
+  ListBooks.propTypes = {
+    books: React.PropTypes.array.isRequired,
+    onUpdateShelf: React.PropTypes.func.isRequired
+  }
+  export default ListBooks

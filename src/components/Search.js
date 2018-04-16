@@ -8,6 +8,7 @@ class Search extends Component{
   static PropTypes = {
     books: PropTypes.object.isRequired,
     onUpdateShelf: PropTypes.func.isRequired,
+    getBookShelf: PropTypes.func.isRequired
   }
 
   state = {
@@ -21,7 +22,7 @@ class Search extends Component{
       BooksAPI.search(query, 1000).then((books)=> {
         if(books.error == undefined){
           books.map((book) => {
-            const bookInShelf = books.find(b => b.id === book.id)
+            const bookInShelf = this.props.getBookShelf(book.id);
              if (bookInShelf) {
                book.shelf = bookInShelf.shelf
              }else{
